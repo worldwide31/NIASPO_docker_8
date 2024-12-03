@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  couchbase:
+    image: couchbase:latest
+    container_name: couchbase_server
+    ports:
+      - "8091:8091" # Панель управления
+      - "8092:8092" # Дизайнер запросов
+      - "8093:8093" # Query API
+      - "11210:11210" # Протокол данных
+      - "11211:11211" # Механизм хранения
+    environment:
+      - CB_USERNAME=admin  # Укажите имя пользователя для админки
+      - CB_PASSWORD=password  # Укажите пароль для админки
+    volumes:
+      - couchbase_data:/opt/couchbase/var
+
+volumes:
+  couchbase_data:
